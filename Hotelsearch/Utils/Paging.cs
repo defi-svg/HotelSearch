@@ -21,6 +21,11 @@ namespace hotelsearch.Utils
                 return null;
             }
 
+            if(pageNumber==0 && pageSize==0)
+            {
+                return list;
+            }
+
             return list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         }
     }

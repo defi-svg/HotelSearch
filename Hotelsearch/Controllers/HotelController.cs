@@ -94,7 +94,7 @@ namespace hotelsearch.Controllers
             var hotel = hotels.Find(a => a.Name == hotelname);
             if (hotel==null)
             {
-                _logger.LogInformation($"Can't find hotel: {hotelname}");
+                _logger?.LogInformation($"Can't find hotel: {hotelname}");
                 return BadRequest("Hotel not found");
             }
             return Ok(hotel);
