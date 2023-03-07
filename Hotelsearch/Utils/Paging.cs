@@ -16,16 +16,10 @@ namespace hotelsearch.Utils
         /// <returns>filtered list of hotels</returns>
         public static List<T> PageFilter<T>(List<T> list, int pageNumber, int pageSize = 2)
         {
-            if (list is null)
-            {
-                return null;
-            }
-
             if(pageNumber==0 && pageSize==0)
             {
                 return list;
             }
-
             return list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         }
     }

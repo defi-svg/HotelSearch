@@ -71,7 +71,119 @@ namespace TestHotelSearch
 
         #endregion
 
+        #region GetByDistanceFromCurrentPosition
 
+        [Fact]
+        public void GetByDistanceFromCurrentPosition_WhenCalled_HotelsReturn()
+        {
+            // Act
+            var actionResult = _controller.GetByDistanceFromCurrentPosition(44.888490460386855, 13.848393013359066,0,0);
+            // Assert
+            Assert.IsType<OkObjectResult>(actionResult.Result.Result);
+        }
+
+
+        #endregion
+
+        #region AddHotel
+        [Fact]
+        public void AddHotel_WhenCalled_HotelNull()
+        {
+            // Act
+            var actionResult = _controller.AddHotel(null, 0, 0);
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(actionResult.Result.Result);
+        }
+
+        [Fact]
+        public void AddHotel_WhenCalled_HotelOk()
+        {
+            var hotel = new Hotel
+            {
+                Id = 7,
+                Name = "Test",
+                Price = 0,
+                GeoLocation = new Location { Lat = 0, Long = 0 }
+            };
+            // Act
+            var actionResult = _controller.AddHotel(hotel, 0, 0);
+            // Assert
+            Assert.IsType<OkObjectResult>(actionResult.Result.Result);
+        }
+
+        #endregion
+
+        #region UpdateHotel
+
+        [Fact]
+        public void UpdateHotel_WhenCalled_HotelNull()
+        {
+            // Act
+            var actionResult = _controller.UpdateHotel(null, 0, 0);
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(actionResult.Result.Result);
+        }
+
+        [Fact]
+        public void UpdateHotel_WhenCalled_HotelOk()
+        {
+            var hotel = new Hotel
+            {
+                Id = 4,
+                Name = "Test",
+                Price = 0,
+                GeoLocation = new Location { Lat = 0, Long = 0 }
+            };
+            // Act
+            var actionResult = _controller.UpdateHotel(hotel, 0, 0);
+            // Assert
+            Assert.IsType<OkObjectResult>(actionResult.Result.Result);
+        }
+
+        #endregion
+
+
+
+        #region DeleteHotel
+        [Fact]
+        public void DeleteHotel_WhenCalled_HotelNull()
+        {
+            // Act
+            var actionResult = _controller.DeleteHotel(null, 0, 0);
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(actionResult.Result.Result);
+        }
+
+        [Fact]
+        public void DeleteHotel_WhenCalled_HotelOk()
+        {
+            var hotel = new Hotel
+            {
+                Id = 1,
+                Name = "",
+                Price = 0,
+                GeoLocation = new Location { Lat = 0, Long = 0 }
+            };
+            // Act
+            var actionResult = _controller.DeleteHotel(hotel, 0, 0);
+            // Assert
+            Assert.IsType<OkObjectResult>(actionResult.Result.Result);
+        }
+
+
+
+        [Fact]
+        public void DeleteHotelById_WhenCalled_IdOk()
+        {
+            int id = 1;
+            // Act
+            var actionResult = _controller.DeleteHotelById(id, 0, 0);
+            // Assert
+            Assert.IsType<OkObjectResult>(actionResult.Result.Result);
+        }
+
+
+        #endregion
 
     }
 }

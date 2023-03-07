@@ -21,6 +21,12 @@ namespace hotelsearch.Utils
         {
             try
             {
+                if(currentLocation==null  || hotelLocation==null)
+                {
+                    _logger?.LogInformation("CalulateDistance: location is null");
+                    return -1;
+                }
+
                 var d1 = currentLocation.Lat * (Math.PI / 180.0);
                 var num1 = currentLocation.Long * (Math.PI / 180.0);
                 var d2 = hotelLocation.Lat * (Math.PI / 180.0);
@@ -31,7 +37,7 @@ namespace hotelsearch.Utils
             }
             catch(Exception ex)
             {
-                _logger.LogError("CalulateDistance", ex);
+                _logger?.LogError("CalulateDistance", ex);
                 return -1;
             }
         }
